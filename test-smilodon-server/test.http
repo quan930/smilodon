@@ -1,0 +1,17 @@
+POST http://localhost:7010/smilodon/register
+Content-Type: application/json
+
+{
+  "serviceId": "SERVER-BOOK",
+  "instanceId": "serverbook6001",
+  "host": "127.0.0.1",
+  "port":6001,
+  "secure":false
+}
+
+###
+GET http://localhost:7010
+Accept: application/json
+
+
+###

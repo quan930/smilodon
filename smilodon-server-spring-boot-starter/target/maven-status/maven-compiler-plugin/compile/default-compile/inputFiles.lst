@@ -1,0 +1,9 @@
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/EnableSmilodonServer.java
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/pojo/Status.java
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/controller/SmilodonCon.java
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/serviceregistry/SmilodonServiceRegistry.java
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/properties/SmilodonInstanceProperties.java
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/serviceregistry/SmilodonRegistration.java
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/config/SmilodonServerConfig.java
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/properties/SmilodonServerProperties.java
+/Users/daquan/IdeaProjects/smilodon/smilodon-server-spring-boot-starter/src/main/java/cn/lilq/smilodon/Test.java
