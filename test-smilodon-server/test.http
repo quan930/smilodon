@@ -2,15 +2,41 @@ POST http://localhost:7010/smilodon/register
 Content-Type: application/json
 
 {
-  "serviceId": "SERVER-BOOK",
-  "instanceId": "serverbook6001",
+  "serviceId": "SERVER-PERSON",
+  "instanceId": "serverperson7001",
   "host": "127.0.0.1",
-  "port":6001,
+  "port":7001,
+  "secure":false
+}
+
+###
+POST http://localhost:7010/smilodon/register
+Content-Type: application/json
+
+{
+  "serviceId": "SERVER-BOOK",
+  "instanceId": "serverbook6002",
+  "host": "127.0.0.1",
+  "port":6002,
   "secure":false
 }
 
 ###
 GET http://localhost:7010
+Accept: application/json
+
+
+###
+
+###
+GET http://localhost:7010/actuator
+Accept: application/json
+
+
+###
+
+
+GET http://localhost:7010/actuator/health
 Accept: application/json
 
 

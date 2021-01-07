@@ -2,8 +2,10 @@ package cn.lilq.smilodon.controller;
 
 import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
+import cn.lilq.smilodon.service.SmilodonService;
 import cn.lilq.smilodon.serviceregistry.SmilodonRegistration;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 import org.springframework.stereotype.Controller;
@@ -25,10 +27,10 @@ import java.util.Map;
 @Slf4j
 @Controller
 public class SmilodonCon {
+//    @Resource
+//    private Map<String, List<Registration>> serviceRegistryMap;
     @Resource
-    private ServiceRegistry<Registration> serviceRegistry;
-    @Resource
-    private Map<String, List<Registration>> serviceRegistryMap;
+    private SmilodonService smilodonService;
 
     @ResponseBody
     @RequestMapping(value = "/",method = RequestMethod.GET)
@@ -38,7 +40,7 @@ public class SmilodonCon {
 //        }else {
 //            log.info(serviceRegistryMap.get("SERVER-BOOK")+"");
 //        }
-        return new Response(200,"successful",serviceRegistryMap);
+        return new Response(200,"successful",smilodonService.getServiceRegistryMap());
     }
 
     /**
@@ -50,10 +52,8 @@ public class SmilodonCon {
     @RequestMapping(value = "/smilodon/register",method = RequestMethod.POST)
     public Response addRegister(@RequestBody SmilodonRegister smilodonRegister){
         Registration registration = new SmilodonRegistration(smilodonRegister);
-        log.info("服务id"+registration.getServiceId());
-        log.info("实例id"+registration.getInstanceId());
-        serviceRegistry.register(registration);
-        log.info(serviceRegistry+"");
+        log.info("注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
+        smilodonService.getServiceRegistry().register(registration);
         return new Response(200,"successful",null);
     }
 }

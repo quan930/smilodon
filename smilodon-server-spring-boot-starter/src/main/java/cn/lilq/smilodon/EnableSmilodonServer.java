@@ -1,6 +1,7 @@
 package cn.lilq.smilodon;
 
 import cn.lilq.smilodon.config.SmilodonServerConfig;
+import cn.lilq.smilodon.config.SmilodonTimer;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -15,7 +16,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({SmilodonServerConfig.class})
+@Import({SmilodonServerConfig.class, SmilodonTimer.class})
 public @interface EnableSmilodonServer {
 
 }

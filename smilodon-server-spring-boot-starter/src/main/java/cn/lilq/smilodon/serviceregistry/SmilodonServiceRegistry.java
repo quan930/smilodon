@@ -1,6 +1,7 @@
 package cn.lilq.smilodon.serviceregistry;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @auther: Li Liangquan
  * @date: 2021/1/6 15:40
  * 服务注册中心
+ * ok 不要更改
  */
 @Slf4j
 public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
@@ -34,7 +36,6 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
      * 初始化方法
      */
     public void init(){
-//        serviceRegistryMap=new ConcurrentHashMap<>();
         //启动定时器
     }
 
@@ -44,8 +45,6 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
      */
     @Override
     public void register(Registration registration) {
-        List<Registration> list = serviceRegistryMap.get(registration.getServiceId());
-
         if (serviceRegistryMap.get(registration.getServiceId())==null){
             serviceRegistryMap.put(registration.getServiceId(),new CopyOnWriteArrayList<>(new Registration[]{registration}));
         }else {
@@ -61,9 +60,10 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
      */
     @Override
     public void deregister(Registration registration) {
-        serviceRegistryMap.get(registration.getServiceId()).removeIf(
-                registration1 -> registration1.getInstanceId().equals(registration1.getInstanceId())
-        );
+        List<Registration> list = serviceRegistryMap.get(registration.getServiceId());
+        list.removeIf(registration1 -> registration1.getInstanceId().equals(registration.getInstanceId()));
+        if (list.size()==0)//list null remove map
+            serviceRegistryMap.remove(registration.getServiceId());
         log.info("删除一条记录");
     }
 
@@ -85,6 +85,8 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
      */
     @Override
     public void setStatus(Registration registration, String status) {
+        if(serviceRegistryMap.get(registration.getServiceId())==null)
+            return;
         serviceRegistryMap.get(registration.getServiceId()).stream()
                 .filter(registration1 -> registration.getInstanceId().equals(registration1.getInstanceId()))
                 .findFirst()
