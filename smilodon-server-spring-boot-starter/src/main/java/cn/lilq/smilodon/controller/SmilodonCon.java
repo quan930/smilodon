@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,8 +24,6 @@ import java.util.Map;
 @Slf4j
 @Controller
 public class SmilodonCon {
-//    @Resource
-//    private Map<String, List<Registration>> serviceRegistryMap;
     @Resource
     private SmilodonService smilodonService;
 
@@ -51,9 +46,32 @@ public class SmilodonCon {
     @ResponseBody
     @RequestMapping(value = "/smilodon/register",method = RequestMethod.POST)
     public Response addRegister(@RequestBody SmilodonRegister smilodonRegister){
-        Registration registration = new SmilodonRegistration(smilodonRegister);
-        log.info("注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
-        smilodonService.getServiceRegistry().register(registration);
+//        Registration registration = new SmilodonRegistration(smilodonRegister);
+//        log.info("注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
+//        smilodonService.getServiceRegistry().register(registration);
+        smilodonService.register(smilodonRegister);
         return new Response(200,"successful",null);
+    }
+
+
+    /**
+     * 获取注册服务id列表
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/smilodon/discovery",method = RequestMethod.GET)
+    public Response discoveryList(){
+        return new Response(200,"successful",smilodonService.getServices());
+    }
+
+    /**
+     * 根据 服务id获取服务实例列表
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/smilodon/discovery/{id}", method= RequestMethod.GET)
+    public Response getInstancesByServiceId(@PathVariable String id){
+        return new Response(200,"successful",smilodonService.getInstancesByServiceId(id));
     }
 }

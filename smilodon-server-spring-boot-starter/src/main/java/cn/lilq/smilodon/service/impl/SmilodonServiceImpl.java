@@ -1,16 +1,21 @@
 package cn.lilq.smilodon.service.impl;
 
+import cn.lilq.smilodon.SmilodonRegister;
 import cn.lilq.smilodon.properties.SmilodonInstanceProperties;
 import cn.lilq.smilodon.properties.SmilodonServerProperties;
 import cn.lilq.smilodon.service.SmilodonService;
+import cn.lilq.smilodon.serviceregistry.SmilodonRegistration;
+import cn.lilq.smilodon.util.Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -63,14 +68,31 @@ public class SmilodonServiceImpl implements SmilodonService {
         return smilodonServerProperties.getMaxWaitTime()/smilodonServerProperties.getTestingTime();
     }
 
-    @Override
-    public ServiceRegistry<Registration> getServiceRegistry() {
-        return this.serviceRegistry;
-    }
+//    @Override
+//    public ServiceRegistry<Registration> getServiceRegistry() {
+//        return this.serviceRegistry;
+//    }
 
     @Override
     public Map<String, List<Registration>> getServiceRegistryMap() {
         return this.serviceRegistryMap;
+    }
+
+    @Override
+    public List<String> getServices() {
+        return new ArrayList<>(serviceRegistryMap.keySet());
+    }
+
+    @Override
+    public List<SmilodonRegister> getInstancesByServiceId(String serviceId) {
+        return Util.ListRegistrationToListListSmilodonRegister(serviceRegistryMap.get(serviceId));
+    }
+
+    @Override
+    public void register(SmilodonRegister smilodonRegister) {
+        Registration registration = new SmilodonRegistration(smilodonRegister);
+        log.info("注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
+        serviceRegistry.register(registration);
     }
 
     private class Status{

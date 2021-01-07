@@ -3,9 +3,9 @@ Content-Type: application/json
 
 {
   "serviceId": "SERVER-PERSON",
-  "instanceId": "serverperson7001",
+  "instanceId": "serverperson7003",
   "host": "127.0.0.1",
-  "port":7001,
+  "port":7003,
   "secure":false
 }
 
@@ -15,9 +15,9 @@ Content-Type: application/json
 
 {
   "serviceId": "SERVER-BOOK",
-  "instanceId": "serverbook6002",
+  "instanceId": "serverbook6001",
   "host": "127.0.0.1",
-  "port":6002,
+  "port":6001,
   "secure":false
 }
 
@@ -27,6 +27,12 @@ Accept: application/json
 
 
 ###
+GET http://localhost:7010/smilodon/discovery
+Accept: application/json
+
+###
+GET http://localhost:7010/smilodon/discovery/SERVER-PERSON
+Accept: application/json
 
 ###
 GET http://localhost:7010/actuator

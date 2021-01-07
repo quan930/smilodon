@@ -2,3 +2,4 @@ cn/lilq/smilodon/service/impl/SmilodonServiceImpl$Status.class
 cn/lilq/smilodon/service/SmilodonService.class
 cn/lilq/smilodon/service/impl/SmilodonServiceImpl.class
 cn/lilq/smilodon/config/SmilodonTimer.class
+cn/lilq/smilodon/util/Util.class

@@ -1,5 +1,7 @@
 package cn.lilq.smilodon.service;
 
+import cn.lilq.smilodon.SmilodonRegister;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 
@@ -31,11 +33,11 @@ public interface SmilodonService {
     int maxCheckCount();
 
 
-    /**
-     * 获得注册中心
-     * @return ServiceRegistry<Registration>
-     */
-    ServiceRegistry<Registration> getServiceRegistry();
+//    /**
+//     * 获得注册中心
+//     * @return ServiceRegistry<Registration>
+//     */
+//    ServiceRegistry<Registration> getServiceRegistry();
 
 
     /**
@@ -43,4 +45,25 @@ public interface SmilodonService {
      * @return Map<String, List<Registration>>
      */
     Map<String, List<Registration>> getServiceRegistryMap();
+
+
+    /**
+     * 获取服务列表
+     * @return List<String>
+     */
+    List<String> getServices();
+
+
+    /**
+     * 根据服务id获取可用实例-pojo list
+     * @param serviceId 服务id
+     * @return 实例list pojo
+     */
+    List<SmilodonRegister> getInstancesByServiceId(String serviceId);
+
+    /**
+     * 注册服务
+     * @param smilodonRegister 服务pojo
+     */
+    void register(SmilodonRegister smilodonRegister);
 }

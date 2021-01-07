@@ -55,7 +55,7 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
     }
 
     /**
-     * deregister
+     * deregister 取消注册
      * @param registration
      */
     @Override
@@ -65,6 +65,7 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
         if (list.size()==0)//list null remove map
             serviceRegistryMap.remove(registration.getServiceId());
         log.info("删除一条记录");
+        //广播所有服务
     }
 
     /**
