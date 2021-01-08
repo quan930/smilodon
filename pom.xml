@@ -11,6 +11,8 @@
         <module>smilodon-server-spring-boot-starter</module>
         <module>smilodon-com</module>
         <module>test-smilodon-server</module>
+        <module>smilodon-client-spring-boot-starter</module>
+        <module>test-server</module>
     </modules>
 
     <packaging>pom</packaging>

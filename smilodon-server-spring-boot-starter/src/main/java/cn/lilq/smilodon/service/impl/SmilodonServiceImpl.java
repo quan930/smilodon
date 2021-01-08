@@ -95,7 +95,7 @@ public class SmilodonServiceImpl implements SmilodonService {
         serviceRegistry.register(registration);
     }
 
-    private class Status{
+    private static class Status{
         private String status;
 
         public Status() {

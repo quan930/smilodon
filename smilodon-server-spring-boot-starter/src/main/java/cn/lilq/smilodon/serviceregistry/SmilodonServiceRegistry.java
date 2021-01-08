@@ -92,7 +92,7 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
                 .filter(registration1 -> registration.getInstanceId().equals(registration1.getInstanceId()))
                 .findFirst()
                 .ifPresent(registration1 -> {
-                    if (status.equals("up")){
+                    if (status.equals("UP")){
                         registration1.getMetadata().put("count","0");
                     }else {
                         if (registration1.getMetadata().get("count")==null){

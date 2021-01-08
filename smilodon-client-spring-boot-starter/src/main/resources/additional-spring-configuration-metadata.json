@@ -1,0 +1,37 @@
+{"properties": [
+  {
+    "name": "smilodon.instance.hostname",
+    "type": "java.lang.String",
+    "defaultValue": "",
+    "description": "服务实例主机名称."
+  },
+  {
+    "name": "smilodon.instance.prefer-ip-address",
+    "type": "java.lang.Boolean",
+    "defaultValue": true,
+    "description": "服务实例使用ip地址."
+  },
+  {
+    "name": "smilodon.instance.instance-id",
+    "type": "java.lang.String",
+    "defaultValue": null,
+    "description": "服务实例id."
+  },
+  {
+    "name": " smilodon.client.register-with-smilodon",
+    "type": "java.lang.Boolean",
+    "defaultValue": true,
+    "description": "是否使用smilodon注册."
+  },
+  {
+    "name": " smilodon.client.fetch-registry",
+    "type": "java.lang.Boolean",
+    "defaultValue": false,
+    "description": "获取注册表-是否启用缓存."
+  },
+  {
+    "name": "smilodon.client.service-url",
+    "type": "java.lang.String",
+    "description": "注册中心地址-url."
+  }
+]}
