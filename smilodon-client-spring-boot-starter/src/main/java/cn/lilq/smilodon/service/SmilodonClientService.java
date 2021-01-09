@@ -15,6 +15,13 @@ public interface SmilodonClientService {
     boolean register(SmilodonRegister smilodonRegister);
 
     /**
+     * 取消注册实例
+     * @param smilodonRegister 注册对象pojo
+     * @return 取消注册成功 true 否则false
+     */
+    boolean unregister(SmilodonRegister smilodonRegister);
+
+    /**
      * 订阅服务
      * @param url 订阅服务的url(客户端)
      * @return 订阅成功 true 否则false

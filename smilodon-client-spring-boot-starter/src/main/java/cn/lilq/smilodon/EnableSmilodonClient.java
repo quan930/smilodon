@@ -1,6 +1,7 @@
 package cn.lilq.smilodon;
 
 import cn.lilq.smilodon.config.SmilodonClientConfig;
+import cn.lilq.smilodon.config.SmilodonDisposableBean;
 import cn.lilq.smilodon.config.SmilodonServiceConfig;
 import org.springframework.context.annotation.Import;
 
@@ -15,6 +16,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({SmilodonClientConfig.class, SmilodonServiceConfig.class})
+@Import({SmilodonClientConfig.class, SmilodonServiceConfig.class, SmilodonDisposableBean.class})
 public @interface EnableSmilodonClient {
 }

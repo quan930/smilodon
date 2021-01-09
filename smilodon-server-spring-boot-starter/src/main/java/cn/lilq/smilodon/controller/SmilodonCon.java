@@ -47,6 +47,19 @@ public class SmilodonCon {
         return new Response(200,"successful",null);
     }
 
+
+    /**
+     * 取消注册实例
+     * @param smilodonRegister smilodonRegister
+     * @return response
+     */
+    @ResponseBody
+    @RequestMapping(value = "/smilodon/unregister",method = RequestMethod.POST)
+    public Response unregister(@RequestBody SmilodonRegister smilodonRegister){
+        smilodonService.unregister(smilodonRegister);
+        return new Response(200,"successful",null);
+    }
+
     /**
      * 订阅服务
      * @return response

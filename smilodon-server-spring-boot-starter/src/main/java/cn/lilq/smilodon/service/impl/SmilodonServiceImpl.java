@@ -98,6 +98,13 @@ public class SmilodonServiceImpl implements SmilodonService {
     }
 
     @Override
+    public void unregister(SmilodonRegister smilodonRegister) {
+        Registration registration = new SmilodonRegistration(smilodonRegister);
+        log.info("取消注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
+        serviceRegistry.deregister(registration);
+    }
+
+    @Override
     public void subscribe(String url) {
         log.info("subscribe: "+url);
         subscribeServiceUrlList.add(url);

@@ -55,6 +55,22 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
     }
 
     @Override
+    public boolean unregister(SmilodonRegister smilodonRegister) {
+        log.info("取消注册uri:"+smilodonClientProperties.getServiceUrl()+"/smilodon/unregister"+"  ---"+smilodonRegister);
+        try{
+            Response response = restTemplate.postForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/unregister",smilodonRegister, Response.class);
+            assert response != null;
+            if (response.getCode()==200){
+                return true;
+            }
+        }catch (RestClientException e){
+//            e.printStackTrace();
+        }
+        log.info("取消注册error");
+        return false;
+    }
+
+    @Override
     public boolean subscribe(String url) {
         log.info("订阅uri:"+url);
         try{

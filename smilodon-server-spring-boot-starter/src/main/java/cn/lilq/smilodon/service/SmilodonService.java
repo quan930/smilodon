@@ -68,6 +68,12 @@ public interface SmilodonService {
     void register(SmilodonRegister smilodonRegister);
 
     /**
+     * 取消注册
+     * @param smilodonRegister
+     */
+    void unregister(SmilodonRegister smilodonRegister);
+
+    /**
      * 订阅服务
      * @param url 订阅服务注册发现服务的客户端url
      */
