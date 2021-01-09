@@ -31,7 +31,9 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
 
     public void init(){
         log.info("服务启动-init"+smilodonRegister.getServiceId());
-        register(smilodonRegister);
+        if (smilodonClientProperties.getRegisterWithSmilodon()){
+            register(smilodonRegister);
+        }
     }
 
     @Override

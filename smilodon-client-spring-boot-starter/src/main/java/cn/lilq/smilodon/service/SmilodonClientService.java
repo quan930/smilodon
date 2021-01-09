@@ -8,7 +8,7 @@ import cn.lilq.smilodon.SmilodonRegister;
  */
 public interface SmilodonClientService {
     /**
-     * 注册
+     * 注册实例
      * @param smilodonRegister 注册对象pojo
      * @return 注册成功 true 否则false
      */
