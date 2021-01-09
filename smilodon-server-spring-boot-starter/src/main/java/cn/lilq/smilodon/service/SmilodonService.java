@@ -48,7 +48,7 @@ public interface SmilodonService {
 
 
     /**
-     * 获取服务列表
+     * 获取服务实例列表
      * @return List<String>
      */
     List<String> getServices();
@@ -62,8 +62,22 @@ public interface SmilodonService {
     List<SmilodonRegister> getInstancesByServiceId(String serviceId);
 
     /**
-     * 注册服务
+     * 注册服务实例
      * @param smilodonRegister 服务pojo
      */
     void register(SmilodonRegister smilodonRegister);
+
+    /**
+     * 订阅服务
+     * @param url 订阅服务注册发现服务的客户端url
+     */
+    void subscribe(String url);
+
+    /**
+     * 取消订阅服务
+     * @param url 订阅服务注册发现服务的客户端url
+     */
+    void unsubscribe(String url);
+
+    List<String> getSubscribeList();
 }

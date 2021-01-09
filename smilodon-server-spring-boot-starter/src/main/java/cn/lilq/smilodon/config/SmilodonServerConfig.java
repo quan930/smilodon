@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @auther: Li Liangquan
@@ -37,6 +38,16 @@ public class SmilodonServerConfig {
     @Bean(name = "status")
     public Status status(){
         return new Status();
+    }
+
+
+    /**
+     * 订阅服务列表
+     * @return 订阅服务列表 url
+     */
+    @Bean(name = "subscribeServiceUrlList")
+    public List<String> subscribeServiceUrlList(){
+        return new CopyOnWriteArrayList<>();
     }
 
     /**

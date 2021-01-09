@@ -3,17 +3,11 @@ package cn.lilq.smilodon.controller;
 import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
 import cn.lilq.smilodon.service.SmilodonService;
-import cn.lilq.smilodon.serviceregistry.SmilodonRegistration;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.serviceregistry.Registration;
-import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @auther: Li Liangquan
@@ -39,7 +33,7 @@ public class SmilodonCon {
     }
 
     /**
-     * 注册
+     * 注册实例
      * @param smilodonRegister smilodonRegister
      * @return response
      */
@@ -53,10 +47,41 @@ public class SmilodonCon {
         return new Response(200,"successful",null);
     }
 
+    /**
+     * 订阅服务
+     * @return response
+     */
+    @ResponseBody
+    @RequestMapping(value = "/smilodon/subscribe",method = RequestMethod.POST)
+    public Response subscribeService(@RequestBody String url){
+        smilodonService.subscribe(url);
+        return new Response(200,"successful",null);
+    }
+
+    /**
+     * 取消订阅服务
+     * @return response
+     */
+    @ResponseBody
+    @RequestMapping(value = "/smilodon/unsubscribe",method = RequestMethod.POST)
+    public Response unsubscribeService(@RequestBody String url){
+        smilodonService.unsubscribe(url);
+        return new Response(200,"successful",null);
+    }
+
+    /**
+     * 获取订阅服务列表
+     * @return 订阅服务列表
+     */
+    @ResponseBody
+    @RequestMapping(value = "/smilodon/subscribe",method = RequestMethod.GET)
+    public Response subscribeServiceList(){
+        return new Response(200,"successful",smilodonService.getSubscribeList());
+    }
 
     /**
      * 获取注册服务id列表
-     * @return
+     * @return 服务id列表
      */
     @ResponseBody
     @RequestMapping(value = "/smilodon/discovery",method = RequestMethod.GET)
@@ -66,8 +91,8 @@ public class SmilodonCon {
 
     /**
      * 根据 服务id获取服务实例列表
-     * @param id
-     * @return
+     * @param id 服务id
+     * @return 服务id对应的实例列表
      */
     @ResponseBody
     @RequestMapping(value="/smilodon/discovery/{id}", method= RequestMethod.GET)

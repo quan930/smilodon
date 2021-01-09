@@ -36,6 +36,8 @@ public class SmilodonServiceImpl implements SmilodonService {
     private ServiceRegistry<Registration> serviceRegistry;
     @Resource
     private Map<String, List<Registration>> serviceRegistryMap;
+    @Resource
+    private List<String> subscribeServiceUrlList;
 
     @Override
     public String getFixedDelay() {
@@ -93,6 +95,23 @@ public class SmilodonServiceImpl implements SmilodonService {
         Registration registration = new SmilodonRegistration(smilodonRegister);
         log.info("注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
         serviceRegistry.register(registration);
+    }
+
+    @Override
+    public void subscribe(String url) {
+        log.info("subscribe: "+url);
+        subscribeServiceUrlList.add(url);
+    }
+
+    @Override
+    public void unsubscribe(String url) {
+        log.info("unsubscribe: "+url);
+        subscribeServiceUrlList.remove(url);
+    }
+
+    @Override
+    public List<String> getSubscribeList() {
+        return subscribeServiceUrlList;
     }
 
     private static class Status{

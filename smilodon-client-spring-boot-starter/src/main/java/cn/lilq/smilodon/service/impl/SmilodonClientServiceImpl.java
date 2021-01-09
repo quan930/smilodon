@@ -4,11 +4,10 @@ import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
 import cn.lilq.smilodon.properties.SmilodonClientProperties;
 import cn.lilq.smilodon.service.SmilodonClientService;
+import cn.lilq.smilodon.util.ClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-
-import javax.annotation.Resource;
 
 /**
  * @auther: Li Liangquan
@@ -31,6 +30,9 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
 
     public void init(){
         log.info("服务启动-init"+smilodonRegister.getServiceId());
+        //订阅
+        subscribe(ClientUtil.smilodonRegisterToUri(smilodonRegister));
+        //注册实例
         if (smilodonClientProperties.getRegisterWithSmilodon()){
             register(smilodonRegister);
         }
@@ -49,6 +51,40 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
 //            e.printStackTrace();
         }
         log.info("注册error");
+        return false;
+    }
+
+    @Override
+    public boolean subscribe(String url) {
+        log.info("订阅uri:"+url);
+        try{
+            Response response = restTemplate.postForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/subscribe",url, Response.class);
+            assert response != null;
+            if (response.getCode()==200){
+                log.info("订阅successful");
+                return true;
+            }
+        }catch (RestClientException e){
+//            e.printStackTrace();
+        }
+        log.info("订阅error");
+        return false;
+    }
+
+    @Override
+    public boolean unsubscribe(String url) {
+        log.info("取消订阅uri:"+url);
+        try{
+            Response response = restTemplate.postForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/unsubscribe",url, Response.class);
+            assert response != null;
+            if (response.getCode()==200){
+                log.info("取消订阅successful");
+                return true;
+            }
+        }catch (RestClientException e){
+//            e.printStackTrace();
+        }
+        log.info("取消订阅error");
         return false;
     }
 }

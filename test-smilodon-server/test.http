@@ -1,3 +1,4 @@
+### 注册服务实例
 POST http://localhost:7010/smilodon/register
 Content-Type: application/json
 
@@ -9,7 +10,7 @@ Content-Type: application/json
   "secure":false
 }
 
-###
+### 注册服务实例
 POST http://localhost:7010/smilodon/register
 Content-Type: application/json
 
@@ -26,24 +27,35 @@ GET http://localhost:7010
 Accept: application/json
 
 
-###
+### 获取注册服务列表
 GET http://localhost:7010/smilodon/discovery
 Accept: application/json
 
-###
+### 根据注册服务获取实例列表
 GET http://localhost:7010/smilodon/discovery/SERVER-PERSON
 Accept: application/json
 
-###
+### 获取订阅服务列表
+GET http://localhost:7010/smilodon/subscribe
+Accept: application/json
+
+### 订阅服务
+POST http://localhost:7010/smilodon/subscribe
+Accept: application/json
+
+http://192.168.43.149:6001
+
+### 取消订阅服务
+POST http://localhost:7010/smilodon/unsubscribe
+Accept: application/json
+
+http://192.168.43.149:6001
+
+### actuator
 GET http://localhost:7010/actuator
 Accept: application/json
 
 
-###
-
-
+### 健康检查
 GET http://localhost:7010/actuator/health
 Accept: application/json
-
-
-###
