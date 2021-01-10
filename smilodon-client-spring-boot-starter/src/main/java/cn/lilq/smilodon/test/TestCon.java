@@ -3,6 +3,7 @@ package cn.lilq.smilodon.test;
 import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
 import cn.lilq.smilodon.service.SmilodonClientService;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,8 @@ public class TestCon {
     private SmilodonRegister smilodonRegister;
     @Resource
     private SmilodonClientService smilodonClientService;
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     @ResponseBody
     @RequestMapping(value = "/",method = RequestMethod.GET)

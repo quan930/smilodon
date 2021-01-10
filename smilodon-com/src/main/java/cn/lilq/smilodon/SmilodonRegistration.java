@@ -1,6 +1,5 @@
-package cn.lilq.smilodon.serviceregistry;
+package cn.lilq.smilodon;
 
-import cn.lilq.smilodon.SmilodonRegister;
 import org.springframework.cloud.client.serviceregistry.Registration;
 
 import java.net.URI;
@@ -9,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @auther: Li Liangquan
- * @date: 2021/1/6 15:52
+ * @date: 2021/1/10 17:35
  * 登记类(注册表中的一条记录)
  */
 public class SmilodonRegistration implements Registration {
@@ -69,3 +68,4 @@ public class SmilodonRegistration implements Registration {
         return isSecure() ? "https" : "http";
     }
 }
+

@@ -1,15 +1,12 @@
 package cn.lilq.smilodon.service.impl;
 
 import cn.lilq.smilodon.SmilodonRegister;
+import cn.lilq.smilodon.SmilodonRegistration;
 import cn.lilq.smilodon.SubscribeService;
-import cn.lilq.smilodon.properties.SmilodonInstanceProperties;
 import cn.lilq.smilodon.properties.SmilodonServerProperties;
 import cn.lilq.smilodon.service.SmilodonService;
-import cn.lilq.smilodon.serviceregistry.SmilodonRegistration;
 import cn.lilq.smilodon.util.Util;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 import org.springframework.web.client.RestClientException;

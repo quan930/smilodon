@@ -7,8 +7,11 @@ import cn.lilq.smilodon.properties.SmilodonClientProperties;
 import cn.lilq.smilodon.service.SmilodonClientService;
 import cn.lilq.smilodon.util.ClientUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 /**
  * @auther: Li Liangquan
@@ -111,7 +114,47 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
         }catch (RestClientException e){
 //            e.printStackTrace();
         }
-        log.info("取消订阅error");
+        log.info("取消订阅 error");
         return false;
+    }
+
+    @Override
+    public List<String> getServices() {
+        if (cache){
+            //缓存
+        }else {
+            log.info("getServices");
+            try{
+                Response response = restTemplate.getForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/discovery", Response.class);
+                assert response != null;
+                if (response.getCode()==200){
+                    return (List<String>)response.getData();
+                }
+            }catch (RestClientException e){
+//            e.printStackTrace();
+            }
+            log.info("getServices error");
+        }
+        return null;
+    }
+
+    @Override
+    public List<ServiceInstance> getInstances(String serviceId) {
+        if (cache){
+            //缓存
+        }else {
+            log.info("getInstances"+serviceId);
+            try{
+                Response response = restTemplate.getForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/discovery/"+serviceId, Response.class);
+                assert response != null;
+                if (response.getCode()==200){
+                    return ClientUtil.objectToListServiceInstance(response.getData());
+                }
+            }catch (RestClientException e){
+//            e.printStackTrace();
+            }
+            log.info("getInstances error");
+        }
+        return null;
     }
 }
