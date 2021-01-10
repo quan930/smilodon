@@ -2,6 +2,7 @@ package cn.lilq.smilodon.service.impl;
 
 import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
+import cn.lilq.smilodon.SubscribeService;
 import cn.lilq.smilodon.properties.SmilodonClientProperties;
 import cn.lilq.smilodon.service.SmilodonClientService;
 import cn.lilq.smilodon.util.ClientUtil;
@@ -18,6 +19,7 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
     private SmilodonRegister smilodonRegister;
     private RestTemplate restTemplate;
     private SmilodonClientProperties smilodonClientProperties;
+    private Boolean cache=false;//是否缓存注册表
 
     public SmilodonClientServiceImpl() {
     }
@@ -31,10 +33,19 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
     public void init(){
         log.info("服务启动-init"+smilodonRegister.getServiceId());
         //订阅
-        subscribe(ClientUtil.smilodonRegisterToUri(smilodonRegister));
+        subscribe(new SubscribeService(ClientUtil.smilodonRegisterToUri(smilodonRegister),smilodonClientProperties.getFetchRegistry()));
         //注册实例
         if (smilodonClientProperties.getRegisterWithSmilodon()){
             register(smilodonRegister);
+        }
+        /**
+         * 判断是否需要实例化注册表
+         */
+        cache = smilodonClientProperties.getFetchRegistry();
+        if (cache){
+            log.info("缓存注册表");
+        }else {
+            log.info("不缓存注册表");
         }
     }
 
@@ -71,10 +82,10 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
     }
 
     @Override
-    public boolean subscribe(String url) {
-        log.info("订阅uri:"+url);
+    public boolean subscribe(SubscribeService subscribeService) {
+        log.info("订阅uri:"+subscribeService);
         try{
-            Response response = restTemplate.postForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/subscribe",url, Response.class);
+            Response response = restTemplate.postForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/subscribe",subscribeService, Response.class);
             assert response != null;
             if (response.getCode()==200){
                 log.info("订阅successful");
@@ -88,10 +99,10 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
     }
 
     @Override
-    public boolean unsubscribe(String url) {
-        log.info("取消订阅uri:"+url);
+    public boolean unsubscribe(SubscribeService subscribeService) {
+        log.info("取消订阅uri:"+subscribeService);
         try{
-            Response response = restTemplate.postForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/unsubscribe",url, Response.class);
+            Response response = restTemplate.postForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/unsubscribe",subscribeService, Response.class);
             assert response != null;
             if (response.getCode()==200){
                 log.info("取消订阅successful");

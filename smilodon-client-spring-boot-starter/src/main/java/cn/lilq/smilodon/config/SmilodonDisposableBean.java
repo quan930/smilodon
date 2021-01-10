@@ -1,6 +1,7 @@
 package cn.lilq.smilodon.config;
 
 import cn.lilq.smilodon.SmilodonRegister;
+import cn.lilq.smilodon.SubscribeService;
 import cn.lilq.smilodon.properties.SmilodonClientProperties;
 import cn.lilq.smilodon.service.SmilodonClientService;
 import cn.lilq.smilodon.util.ClientUtil;
@@ -32,6 +33,8 @@ public class SmilodonDisposableBean implements DisposableBean {
         }
         //取消订阅
         log.info("unsubscribe");
-        smilodonClientService.unsubscribe(ClientUtil.smilodonRegisterToUri(smilodonRegister));
+        SubscribeService subscribeService = new SubscribeService(ClientUtil.smilodonRegisterToUri(smilodonRegister),smilodonClientProperties.getFetchRegistry());
+//        smilodonClientService.unsubscribe(ClientUtil.smilodonRegisterToUri(smilodonRegister));
+        smilodonClientService.unsubscribe(subscribeService);
     }
 }

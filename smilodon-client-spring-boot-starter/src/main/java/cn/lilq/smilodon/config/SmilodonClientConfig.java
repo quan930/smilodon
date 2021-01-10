@@ -55,6 +55,7 @@ public class SmilodonClientConfig {
         return null;
     }
 
+    //可能会跟 @LoadBalanced 冲突
     @Bean(name = "restTemplate")
     public RestTemplate getRestTemplate(){
         return new RestTemplate();

@@ -1,6 +1,7 @@
 package cn.lilq.smilodon.service;
 
 import cn.lilq.smilodon.SmilodonRegister;
+import cn.lilq.smilodon.SubscribeService;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
@@ -75,15 +76,15 @@ public interface SmilodonService {
 
     /**
      * 订阅服务
-     * @param url 订阅服务注册发现服务的客户端url
+     * @param subscribeService 订阅服务注册发现服务的客户端
      */
-    void subscribe(String url);
+    void subscribe(SubscribeService subscribeService);
 
     /**
      * 取消订阅服务
-     * @param url 订阅服务注册发现服务的客户端url
+     * @param subscribeService 订阅服务注册发现服务的客户端
      */
-    void unsubscribe(String url);
+    void unsubscribe(SubscribeService subscribeService);
 
-    List<String> getSubscribeList();
+    List<SubscribeService> getSubscribeList();
 }

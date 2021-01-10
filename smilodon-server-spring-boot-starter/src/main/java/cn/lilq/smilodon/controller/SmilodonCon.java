@@ -2,6 +2,7 @@ package cn.lilq.smilodon.controller;
 
 import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
+import cn.lilq.smilodon.SubscribeService;
 import cn.lilq.smilodon.service.SmilodonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -66,8 +67,8 @@ public class SmilodonCon {
      */
     @ResponseBody
     @RequestMapping(value = "/smilodon/subscribe",method = RequestMethod.POST)
-    public Response subscribeService(@RequestBody String url){
-        smilodonService.subscribe(url);
+    public Response subscribeService(@RequestBody SubscribeService subscribeService){
+        smilodonService.subscribe(subscribeService);
         return new Response(200,"successful",null);
     }
 
@@ -77,8 +78,8 @@ public class SmilodonCon {
      */
     @ResponseBody
     @RequestMapping(value = "/smilodon/unsubscribe",method = RequestMethod.POST)
-    public Response unsubscribeService(@RequestBody String url){
-        smilodonService.unsubscribe(url);
+    public Response unsubscribeService(@RequestBody SubscribeService subscribeService){
+        smilodonService.unsubscribe(subscribeService);
         return new Response(200,"successful",null);
     }
 

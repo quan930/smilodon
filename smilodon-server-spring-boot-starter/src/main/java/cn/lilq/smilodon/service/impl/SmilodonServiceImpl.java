@@ -1,6 +1,7 @@
 package cn.lilq.smilodon.service.impl;
 
 import cn.lilq.smilodon.SmilodonRegister;
+import cn.lilq.smilodon.SubscribeService;
 import cn.lilq.smilodon.properties.SmilodonInstanceProperties;
 import cn.lilq.smilodon.properties.SmilodonServerProperties;
 import cn.lilq.smilodon.service.SmilodonService;
@@ -37,7 +38,7 @@ public class SmilodonServiceImpl implements SmilodonService {
     @Resource
     private Map<String, List<Registration>> serviceRegistryMap;
     @Resource
-    private List<String> subscribeServiceUrlList;
+    private List<SubscribeService> subscribeServiceList;
 
     @Override
     public String getFixedDelay() {
@@ -105,20 +106,20 @@ public class SmilodonServiceImpl implements SmilodonService {
     }
 
     @Override
-    public void subscribe(String url) {
-        log.info("subscribe: "+url);
-        subscribeServiceUrlList.add(url);
+    public void subscribe(SubscribeService subscribeService) {
+        log.info("subscribe: "+subscribeService);
+        subscribeServiceList.add(subscribeService);
     }
 
     @Override
-    public void unsubscribe(String url) {
-        log.info("unsubscribe: "+url);
-        subscribeServiceUrlList.remove(url);
+    public void unsubscribe(SubscribeService subscribeService) {
+        log.info("unsubscribe: "+subscribeService);
+        subscribeServiceList.remove(subscribeService);
     }
 
     @Override
-    public List<String> getSubscribeList() {
-        return subscribeServiceUrlList;
+    public List<SubscribeService> getSubscribeList() {
+        return subscribeServiceList;
     }
 
     private static class Status{

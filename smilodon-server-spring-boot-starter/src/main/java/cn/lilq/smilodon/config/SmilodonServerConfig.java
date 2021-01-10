@@ -1,5 +1,6 @@
 package cn.lilq.smilodon.config;
 
+import cn.lilq.smilodon.SubscribeService;
 import cn.lilq.smilodon.pojo.Status;
 import cn.lilq.smilodon.properties.SmilodonInstanceProperties;
 import cn.lilq.smilodon.properties.SmilodonServerProperties;
@@ -45,8 +46,8 @@ public class SmilodonServerConfig {
      * 订阅服务列表
      * @return 订阅服务列表 url
      */
-    @Bean(name = "subscribeServiceUrlList")
-    public List<String> subscribeServiceUrlList(){
+    @Bean(name = "subscribeServiceList")
+    public List<SubscribeService> subscribeServiceList(){
         return new CopyOnWriteArrayList<>();
     }
 

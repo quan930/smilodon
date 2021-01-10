@@ -1,6 +1,7 @@
 package cn.lilq.smilodon.service;
 
 import cn.lilq.smilodon.SmilodonRegister;
+import cn.lilq.smilodon.SubscribeService;
 
 /**
  * @auther: Li Liangquan
@@ -23,15 +24,15 @@ public interface SmilodonClientService {
 
     /**
      * 订阅服务
-     * @param url 订阅服务的url(客户端)
+     * @param subscribeService 订阅服务(客户端)
      * @return 订阅成功 true 否则false
      */
-    boolean subscribe(String url);
+    boolean subscribe(SubscribeService subscribeService);
 
     /**
      * 取消订阅服务
-     * @param url 订阅服务的url(客户端)
+     * @param subscribeService 订阅服务(客户端)
      * @return 订阅成功 true 否则false
      */
-    boolean unsubscribe(String url);
+    boolean unsubscribe(SubscribeService subscribeService);
 }
