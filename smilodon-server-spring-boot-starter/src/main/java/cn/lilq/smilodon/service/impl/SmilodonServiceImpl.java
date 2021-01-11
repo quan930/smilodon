@@ -13,10 +13,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @auther: Li Liangquan
@@ -43,7 +40,7 @@ public class SmilodonServiceImpl implements SmilodonService {
     }
 
     @Override
-    public void checkRegistration(Registration registration) {
+    public boolean checkRegistration(Registration registration) {
         log.debug(registration.getInstanceId()+"---check url:"+registration.getUri()+"/actuator/health");
         try{
             Status status = restTemplate.getForObject(registration.getUri()+"/actuator/health",Status.class);
@@ -60,7 +57,9 @@ public class SmilodonServiceImpl implements SmilodonService {
         if (Integer.parseInt(count)>=maxCheckCount()){
             serviceRegistry.deregister(registration);
             log.info(registration.getInstanceId()+"error max--remove");
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -117,6 +116,17 @@ public class SmilodonServiceImpl implements SmilodonService {
     @Override
     public List<SubscribeService> getSubscribeList() {
         return subscribeServiceList;
+    }
+
+    @Override
+    public Map<String, List<SmilodonRegister>> getServiceRegistryTable() {
+        Map<String, List<SmilodonRegister>> map = new HashMap<>();
+        serviceRegistryMap.keySet().forEach(serviceID -> {
+            List<SmilodonRegister> smilodonRegisterList = new ArrayList<>();
+            serviceRegistryMap.get(serviceID).forEach(registration -> smilodonRegisterList.add(new SmilodonRegister(registration.getServiceId(),registration.getInstanceId(),registration.getHost(),registration.getPort(),registration.isSecure())));
+            map.put(serviceID,smilodonRegisterList);
+        });
+        return map;
     }
 
     private static class Status{

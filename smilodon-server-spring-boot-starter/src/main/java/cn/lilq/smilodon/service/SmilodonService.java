@@ -25,7 +25,7 @@ public interface SmilodonService {
      * @param registration 登记对象
      * @return 需要移除返回true 否则返回false
      */
-    void checkRegistration(Registration registration);
+    boolean checkRegistration(Registration registration);
 
     /**
      * 最大检测计数
@@ -87,4 +87,10 @@ public interface SmilodonService {
     void unsubscribe(SubscribeService subscribeService);
 
     List<SubscribeService> getSubscribeList();
+
+    /**
+     * 获取注册表
+     * @return Map<String, List<SmilodonRegister>>
+     */
+    Map<String, List<SmilodonRegister>> getServiceRegistryTable();
 }

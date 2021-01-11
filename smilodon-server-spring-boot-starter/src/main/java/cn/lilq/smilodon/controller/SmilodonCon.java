@@ -113,4 +113,15 @@ public class SmilodonCon {
     public Response getInstancesByServiceId(@PathVariable String id){
         return new Response(200,"successful",smilodonService.getInstancesByServiceId(id));
     }
+
+    /**
+     * 获取注册表
+     * @return response 注册表
+     */
+    @ResponseBody
+    @RequestMapping(value = "/smilodon/serviceregistry",method = RequestMethod.GET)
+    public Response serviceRegistryTable(){
+        return new Response(200,"successful",smilodonService.getServiceRegistryTable());
+    }
+
 }

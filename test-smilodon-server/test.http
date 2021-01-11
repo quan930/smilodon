@@ -51,6 +51,10 @@ Accept: application/json
 
 http://192.168.43.149:6001
 
+###
+GET http://localhost:7010/smilodon/serviceregistry
+Accept: application/json
+
 ### actuator
 GET http://localhost:7010/actuator
 Accept: application/json
