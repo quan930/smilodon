@@ -18,11 +18,6 @@ public class SmilodonDiscoveryClient implements DiscoveryClient {
     @Resource
     private SmilodonClientService smilodonClientService;
 
-
-    public SmilodonDiscoveryClient(){
-        log.info("装配成功");
-    }
-
     /**
      * 描述
      * @return description

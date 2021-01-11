@@ -3,6 +3,8 @@
 + 不足
 动态注入controller
 心跳检测
+订阅controller 动态注入
+
 
 
 + 客户端

@@ -11,7 +11,9 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @auther: Li Liangquan
@@ -23,6 +25,7 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
     private RestTemplate restTemplate;
     private SmilodonClientProperties smilodonClientProperties;
     private Boolean cache=false;//是否缓存注册表
+    private Map<String, List<SmilodonRegister>>  serviceregistry;//服务注册表
 
     public SmilodonClientServiceImpl() {
     }
@@ -47,6 +50,20 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
         cache = smilodonClientProperties.getFetchRegistry();
         if (cache){
             log.info("缓存注册表");
+            try{
+                Response response = restTemplate.getForObject(smilodonClientProperties.getServiceUrl()+"smilodon/serviceregistry", Response.class);
+                assert response != null;
+                if (response.getCode()==200){
+                    serviceregistry = ClientUtil.objectToMapStringListSmilodonRegister(response.getData());
+                    log.info("缓存注册表"+serviceregistry);
+                    cache = true;
+                }else {
+                    cache = false;
+                }
+            }catch (RestClientException e){
+//            e.printStackTrace();
+                cache=false;
+            }
         }else {
             log.info("不缓存注册表");
         }
@@ -103,27 +120,28 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
 
     @Override
     public boolean unsubscribe(SubscribeService subscribeService) {
-        log.info("取消订阅uri:"+subscribeService);
+        log.info("unsubscribe uri: "+subscribeService);
         try{
             Response response = restTemplate.postForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/unsubscribe",subscribeService, Response.class);
             assert response != null;
             if (response.getCode()==200){
-                log.info("取消订阅successful");
+                log.info("unsubscribe successful");
                 return true;
             }
         }catch (RestClientException e){
 //            e.printStackTrace();
         }
-        log.info("取消订阅 error");
+        log.info("unsubscribe error");
         return false;
     }
 
     @Override
     public List<String> getServices() {
+        log.info("getServices cache:"+cache);
         if (cache){
             //缓存
+            return new ArrayList<>(serviceregistry.keySet());
         }else {
-            log.info("getServices");
             try{
                 Response response = restTemplate.getForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/discovery", Response.class);
                 assert response != null;
@@ -140,10 +158,11 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
 
     @Override
     public List<ServiceInstance> getInstances(String serviceId) {
+        log.info("getInstances "+serviceId+" cache:"+cache);
         if (cache){
             //缓存
+            return ClientUtil.objectToListServiceInstance(serviceregistry.get(serviceId));
         }else {
-            log.info("getInstances"+serviceId);
             try{
                 Response response = restTemplate.getForObject(smilodonClientProperties.getServiceUrl()+"/smilodon/discovery/"+serviceId, Response.class);
                 assert response != null;

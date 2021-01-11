@@ -4,13 +4,12 @@ import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
 import cn.lilq.smilodon.SmilodonRegistration;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.sun.org.apache.regexp.internal.RE;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.cloud.client.ServiceInstance;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @auther: Li Liangquan
@@ -34,5 +33,15 @@ public class ClientUtil {
             serviceInstances.add(new SmilodonRegistration(smilodonRegister));
         });
         return serviceInstances;
+    }
+
+    /**
+     * object 转 Map<String, List<SmilodonRegister>>
+     * @param object
+     * @return Map<String, List<SmilodonRegister>> 服务注册表
+     */
+    public static Map<String, List<SmilodonRegister>> objectToMapStringListSmilodonRegister(Object object){
+        Map<String, List<SmilodonRegister>> map = JSON.parseObject(JSON.toJSONString(object), new TypeReference<Map<String, List<SmilodonRegister>>>() {});
+        return map;
     }
 }
