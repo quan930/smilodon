@@ -1,5 +1,6 @@
 package cn.lilq.smilodon.service.impl;
 
+import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
 import cn.lilq.smilodon.SmilodonRegistration;
 import cn.lilq.smilodon.SubscribeService;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @auther: Li Liangquan
@@ -41,22 +43,24 @@ public class SmilodonServiceImpl implements SmilodonService {
 
     @Override
     public boolean checkRegistration(Registration registration) {
-        log.debug(registration.getInstanceId()+"---check url:"+registration.getUri()+"/actuator/health");
+//        log.debug(registration.getInstanceId()+"---check url:"+registration.getUri()+"/actuator/health");
         try{
             Status status = restTemplate.getForObject(registration.getUri()+"/actuator/health",Status.class);
             assert status != null;
             //设置健康状态
             serviceRegistry.setStatus(registration,status.getStatus());
         }catch (RestClientException e){
-            log.debug(registration.getInstanceId()+"error");
+            log.debug(registration.getInstanceId()+"---check url:"+registration.getUri()+"/actuator/health"+"  "+registration.getInstanceId()+"error");
             serviceRegistry.setStatus(registration,"error");
         }
         //获得错误次数
         String count = registration.getMetadata().get("count");
-        log.info(registration.getInstanceId()+"error count"+count);
+//        log.info(registration.getInstanceId()+"error count"+count);
         if (Integer.parseInt(count)>=maxCheckCount()){
+            log.info(registration.getInstanceId()+"---check url:"+registration.getUri()+"/actuator/health  "+registration.getInstanceId()+"error max--remove");
             serviceRegistry.deregister(registration);
-            log.info(registration.getInstanceId()+"error max--remove");
+            //广播
+            radio(registration,false);
             return true;
         }
         return false;
@@ -66,11 +70,6 @@ public class SmilodonServiceImpl implements SmilodonService {
     public int maxCheckCount() {
         return smilodonServerProperties.getMaxWaitTime()/smilodonServerProperties.getTestingTime();
     }
-
-//    @Override
-//    public ServiceRegistry<Registration> getServiceRegistry() {
-//        return this.serviceRegistry;
-//    }
 
     @Override
     public Map<String, List<Registration>> getServiceRegistryMap() {
@@ -92,6 +91,8 @@ public class SmilodonServiceImpl implements SmilodonService {
         Registration registration = new SmilodonRegistration(smilodonRegister);
         log.info("注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
         serviceRegistry.register(registration);
+        //广播
+        radio(smilodonRegister,true);
     }
 
     @Override
@@ -99,6 +100,8 @@ public class SmilodonServiceImpl implements SmilodonService {
         Registration registration = new SmilodonRegistration(smilodonRegister);
         log.info("取消注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
         serviceRegistry.deregister(registration);
+        //广播
+        radio(smilodonRegister,false);
     }
 
     @Override
@@ -127,6 +130,58 @@ public class SmilodonServiceImpl implements SmilodonService {
             map.put(serviceID,smilodonRegisterList);
         });
         return map;
+    }
+
+    private boolean radio(Registration registration, boolean isAdd) {
+        AtomicBoolean b = new AtomicBoolean(true);
+        subscribeServiceList.forEach(subscribeService -> {
+            try{
+                if(isAdd){//增加
+                    Response response = restTemplate.postForObject(subscribeService.getSubscribeServiceUrl()+"/smilodon/client/register",
+                            new SmilodonRegister(registration.getServiceId(),registration.getInstanceId(),registration.getHost(),registration.getPort(),registration.isSecure()), Response.class);
+                    assert response != null;
+                    if (response.getCode()==200){
+                        log.info("radio "+isAdd+" "+subscribeService.getSubscribeServiceUrl()+" successful");
+                    }
+                }else {//移除
+                    Response response = restTemplate.postForObject(subscribeService.getSubscribeServiceUrl()+"/smilodon/client/unregister",
+                            new SmilodonRegister(registration.getServiceId(),registration.getInstanceId(),registration.getHost(),registration.getPort(),registration.isSecure()), Response.class);
+                    assert response != null;
+                    if (response.getCode()==200){
+                        log.info("radio "+isAdd+" "+subscribeService.getSubscribeServiceUrl()+" successful");
+                    }
+                }
+            }catch (RestClientException e){
+//            e.printStackTrace();
+                b.set(false);
+            }
+        });
+        return b.get();
+    }
+
+    private boolean radio(SmilodonRegister smilodonRegister, boolean isAdd) {
+        AtomicBoolean b = new AtomicBoolean(true);
+        subscribeServiceList.forEach(subscribeService -> {
+            try{
+                if(isAdd){//增加
+                    Response response = restTemplate.postForObject(subscribeService.getSubscribeServiceUrl()+"/smilodon/client/register", smilodonRegister, Response.class);
+                    assert response != null;
+                    if (response.getCode()==200){
+                        log.info("radio "+isAdd+" "+subscribeService.getSubscribeServiceUrl()+" successful");
+                    }
+                }else {//移除
+                    Response response = restTemplate.postForObject(subscribeService.getSubscribeServiceUrl()+"/smilodon/client/unregister",smilodonRegister, Response.class);
+                    assert response != null;
+                    if (response.getCode()==200){
+                        log.info("radio "+isAdd+" "+subscribeService.getSubscribeServiceUrl()+" successful");
+                    }
+                }
+            }catch (RestClientException e){
+//            e.printStackTrace();
+                b.set(false);
+            }
+        });
+        return b.get();
     }
 
     private static class Status{

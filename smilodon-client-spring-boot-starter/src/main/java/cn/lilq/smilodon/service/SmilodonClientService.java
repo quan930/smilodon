@@ -51,4 +51,18 @@ public interface SmilodonClientService {
      * @return 获取服务实例列表 不存在size为0 失败null
      */
     List<ServiceInstance> getInstances(String serviceId);
+
+    /**
+     * 缓存注册表增加 实例
+     * @param smilodonRegister smilodonRegister
+     * @return 成功true 否则false
+     */
+    boolean addRegister(SmilodonRegister smilodonRegister);
+
+    /**
+     * 缓存注册表删除 实例
+     * @param smilodonRegister smilodonRegister
+     * @return 成功true 否则false
+     */
+    boolean removeRegister(SmilodonRegister smilodonRegister);
 }

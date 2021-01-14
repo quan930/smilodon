@@ -176,4 +176,24 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
         }
         return null;
     }
+
+    @Override
+    public boolean addRegister(SmilodonRegister smilodonRegister) {
+        if (cache){
+            serviceregistry.computeIfAbsent(smilodonRegister.getServiceId(), k -> new ArrayList<>());
+            serviceregistry.get(smilodonRegister.getServiceId()).remove(smilodonRegister);//防止重复
+            serviceregistry.get(smilodonRegister.getServiceId()).add(smilodonRegister);
+        }
+        return cache;
+    }
+
+    @Override
+    public boolean removeRegister(SmilodonRegister smilodonRegister) {
+        if (cache){
+            serviceregistry.get(smilodonRegister.getServiceId()).remove(smilodonRegister);
+            if (serviceregistry.get(smilodonRegister.getServiceId()).size()==0)
+                serviceregistry.remove(smilodonRegister.getServiceId());
+        }
+        return cache;
+    }
 }

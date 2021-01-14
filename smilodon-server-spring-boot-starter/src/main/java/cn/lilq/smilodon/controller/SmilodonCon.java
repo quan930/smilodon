@@ -41,9 +41,6 @@ public class SmilodonCon {
     @ResponseBody
     @RequestMapping(value = "/smilodon/register",method = RequestMethod.POST)
     public Response addRegister(@RequestBody SmilodonRegister smilodonRegister){
-//        Registration registration = new SmilodonRegistration(smilodonRegister);
-//        log.info("注册-服务id:"+registration.getServiceId()+"--实例id:"+registration.getInstanceId());
-//        smilodonService.getServiceRegistry().register(registration);
         smilodonService.register(smilodonRegister);
         return new Response(200,"successful",null);
     }
