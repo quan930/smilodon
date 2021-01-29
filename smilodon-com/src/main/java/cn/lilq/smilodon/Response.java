@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @auther: Li Liangquan
- * @date: 2021/1/6 17:35
+ * Li Liangquan
+ * 2021/1/6 17:35
  */
 
 @Data

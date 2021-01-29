@@ -1,6 +1,5 @@
 package cn.lilq.smilodon.util;
 
-import cn.lilq.smilodon.Response;
 import cn.lilq.smilodon.SmilodonRegister;
 import cn.lilq.smilodon.SmilodonRegistration;
 import com.alibaba.fastjson.JSON;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/9 18:15
  */
@@ -22,9 +21,9 @@ public class ClientUtil {
     }
 
     /**
-     * object 转 List<ServiceInstance>
+     * object 转 List-ServiceInstance
      * @param object Object
-     * @return List<ServiceInstance>
+     * @return List-ServiceInstance
      */
     public static List<ServiceInstance> objectToListServiceInstance(Object object){
         List<ServiceInstance> serviceInstances = new ArrayList<>();
@@ -36,9 +35,9 @@ public class ClientUtil {
     }
 
     /**
-     * object 转 Map<String, List<SmilodonRegister>>
-     * @param object
-     * @return Map<String, List<SmilodonRegister>> 服务注册表
+     * object 转 Map:(key:List-String,value:SmilodonRegister)
+     * @param object Object
+     * @return Map:(key:List-String,value:SmilodonRegister) 服务注册表
      */
     public static Map<String, List<SmilodonRegister>> objectToMapStringListSmilodonRegister(Object object){
         Map<String, List<SmilodonRegister>> map = JSON.parseObject(JSON.toJSONString(object), new TypeReference<Map<String, List<SmilodonRegister>>>() {});

@@ -1,9 +1,10 @@
-package cn.lilq.smilodon;
+package cn.lilq.smilodontest;
 
+import cn.lilq.smilodon.EnableSmilodonClient;
+import cn.lilq.smilodon.Response;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,20 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
-/**
+/*
  * @auther: Li Liangquan
- * @date: 2021/1/8 16:58
+ * @date: 2021/1/29 21:06
  */
-
 @EnableSmilodonClient
 @SpringBootApplication
 @Controller
-public class TestServerApplication {
+public class SmilodonClientApplication {
     @Resource
     private DiscoveryClient discoveryClient;
 
     public static void main(String[] args) {
-        SpringApplication.run(TestServerApplication.class,args);
+        SpringApplication.run(SmilodonClientApplication.class,args);
     }
 
     @ResponseBody
@@ -40,3 +40,4 @@ public class TestServerApplication {
         return new Response(200,"successful",discoveryClient.getInstances(id));
     }
 }
+

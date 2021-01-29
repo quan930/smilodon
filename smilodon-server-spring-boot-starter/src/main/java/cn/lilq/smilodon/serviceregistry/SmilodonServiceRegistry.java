@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/6 15:40
  * 服务注册中心
@@ -41,7 +41,7 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
 
     /**
      * 注册
-     * @param registration
+     * @param registration registration
      */
     @Override
     public void register(Registration registration) {
@@ -56,7 +56,7 @@ public class SmilodonServiceRegistry implements ServiceRegistry<Registration> {
 
     /**
      * deregister 取消注册
-     * @param registration
+     * @param registration registration
      */
     @Override
     public void deregister(Registration registration) {

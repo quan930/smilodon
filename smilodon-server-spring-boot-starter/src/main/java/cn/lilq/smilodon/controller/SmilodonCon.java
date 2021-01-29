@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/6 15:09
  * Smilodon Controller
@@ -60,6 +60,7 @@ public class SmilodonCon {
 
     /**
      * 订阅服务
+     * @param subscribeService subscribeService
      * @return response
      */
     @ResponseBody
@@ -71,6 +72,7 @@ public class SmilodonCon {
 
     /**
      * 取消订阅服务
+     * @param subscribeService subscribeService
      * @return response
      */
     @ResponseBody

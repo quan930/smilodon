@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @auther: Li Liangquan
- * @date: 2021/1/10 16:12
+ * Li Liangquan
+ * 2021/1/10 16:12
  * 订阅服务注册类 pojo
  */
 

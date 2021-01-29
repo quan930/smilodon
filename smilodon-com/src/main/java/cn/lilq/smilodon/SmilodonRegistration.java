@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @auther: Li Liangquan
- * @date: 2021/1/10 17:35
+ * Li Liangquan
+ * 2021/1/10 17:35
  * 登记类(注册表中的一条记录)
  */
 public class SmilodonRegistration implements Registration {

@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @auther: Li Liangquan
- * @date: 2021/1/6 15:27
+ * Li Liangquan
+ * 2021/1/6 15:27
  * 公共注册类
  */
 

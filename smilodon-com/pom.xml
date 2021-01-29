@@ -2,15 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <artifactId>smilodon</artifactId>
         <groupId>cn.lilq</groupId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.2.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.lilq.smilodon</groupId>
     <artifactId>smilodon-com</artifactId>
+    <name>smilodon-com</name>
+    <description>Spring Cloud smilodon common</description>
 
     <dependencies>
         <!--lombok-->
@@ -24,30 +27,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
+        </dependency>
     </dependencies>
-
-    <scm>
-        <url>https://github.com/quan930/smilodon</url>
-        <connection>https://github.com/quan930/smilodon.git</connection>
-        <developerConnection>https://github.com/quan930</developerConnection>
-    </scm>
-
-    <developers>
-        <developer>
-            <name>liliangquan</name>
-            <email>1583090876@qq.com</email>
-        </developer>
-    </developers>
-
-    <distributionManagement>
-        <repository>
-            <id>snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>

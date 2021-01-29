@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/8 20:28
  */
@@ -44,7 +44,7 @@ public class SmilodonClientServiceImpl implements SmilodonClientService {
         if (smilodonClientProperties.getRegisterWithSmilodon()){
             register(smilodonRegister);
         }
-        /**
+        /*
          * 判断是否需要实例化注册表
          */
         cache = smilodonClientProperties.getFetchRegistry();

@@ -5,12 +5,14 @@
     <parent>
         <artifactId>smilodon</artifactId>
         <groupId>cn.lilq</groupId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.2.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.lilq.smilodon</groupId>
     <artifactId>smilodon-server-spring-boot-starter</artifactId>
+    <name>smilodon-server-spring-boot-starter</name>
+    <description>Spring Cloud smilodon server starter</description>
 
     <dependencies>
         <!--web-->
@@ -44,8 +46,7 @@
         <dependency>
             <groupId>cn.lilq.smilodon</groupId>
             <artifactId>smilodon-com</artifactId>
-            <version>0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <version>0.2</version>
         </dependency>
     </dependencies>
 </project>

@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/10 16:48
  */

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/11 19:28
  * 订阅 controller 缓存注册表时起作用 服务端广播

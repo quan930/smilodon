@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/8 19:05
  * service 装配配置类

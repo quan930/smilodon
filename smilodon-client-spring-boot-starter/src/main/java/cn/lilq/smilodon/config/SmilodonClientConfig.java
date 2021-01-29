@@ -14,7 +14,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/8 16:32
  * smilodon 客户端配置类

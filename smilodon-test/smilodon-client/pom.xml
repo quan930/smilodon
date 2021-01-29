@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>smilodon</artifactId>
+        <artifactId>smilodon-test</artifactId>
         <groupId>cn.lilq</groupId>
         <version>0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.lilq.smilodon</groupId>
-    <artifactId>test-server</artifactId>
+    <groupId>cn.lilq.smilodontest</groupId>
+    <artifactId>smilodon-client</artifactId>
 
     <dependencies>
         <dependency>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>cn.lilq.smilodon</groupId>
             <artifactId>smilodon-client-spring-boot-starter</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>0.2.2</version>
         </dependency>
         <!--test-->
         <dependency>

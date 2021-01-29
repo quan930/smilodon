@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/8 16:13
  * smilodon.client 客户端配置类

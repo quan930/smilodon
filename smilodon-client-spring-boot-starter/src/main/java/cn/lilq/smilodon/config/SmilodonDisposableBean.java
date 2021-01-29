@@ -10,7 +10,7 @@ import org.springframework.beans.factory.DisposableBean;
 
 import javax.annotation.Resource;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/9 19:15
  * springboot 关闭事件

@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/6 15:06
  */
@@ -53,7 +53,7 @@ public class SmilodonServerConfig {
 
     /**
      * 服务注册表
-     * @return Map<String, List<Registration>>
+     * @return Map(key:String,value:List-Registration)
      */
     @Bean(name = "serviceRegistryMap")
     public Map<String, List<Registration>> serviceRegistryMap(){
@@ -62,7 +62,7 @@ public class SmilodonServerConfig {
 
     /**
      * 服务注册中心
-     * @return ServiceRegistry<Registration>
+     * @return ServiceRegistry-Registration
      */
     @Bean(name="serviceRegistry")
     public ServiceRegistry<Registration> smilodonServiceRegistry(){

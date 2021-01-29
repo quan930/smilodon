@@ -9,7 +9,7 @@ import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 import java.util.List;
 import java.util.Map;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/6 23:36
  */
@@ -43,14 +43,14 @@ public interface SmilodonService {
 
     /**
      * 获得注册中心的注册表
-     * @return Map<String, List<Registration>>
+     * @return Map(key:String,value:List-Registration)
      */
     Map<String, List<Registration>> getServiceRegistryMap();
 
 
     /**
      * 获取服务实例列表
-     * @return List<String>
+     * @return List-String
      */
     List<String> getServices();
 
@@ -70,7 +70,7 @@ public interface SmilodonService {
 
     /**
      * 取消注册
-     * @param smilodonRegister
+     * @param smilodonRegister smilodonRegister
      */
     void unregister(SmilodonRegister smilodonRegister);
 
@@ -90,7 +90,7 @@ public interface SmilodonService {
 
     /**
      * 获取注册表
-     * @return Map<String, List<SmilodonRegister>>
+     * @return Map(key:String,value:List-SmilodonRegister)
      */
     Map<String, List<SmilodonRegister>> getServiceRegistryTable();
 }

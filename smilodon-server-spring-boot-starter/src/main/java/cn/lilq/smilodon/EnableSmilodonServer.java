@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/6 15:02
  * 启用注册发现服务端类

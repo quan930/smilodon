@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.util.Date;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/6 16:51
  * 注册中心状态pojo类

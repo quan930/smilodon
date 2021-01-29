@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
 
-/**
- * @auther: Li Liangquan
+/*
+ * @: Li Liangquan
  * @date: 2021/1/8 16:50
  */
 

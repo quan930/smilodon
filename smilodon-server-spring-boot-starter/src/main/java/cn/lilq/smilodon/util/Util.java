@@ -6,16 +6,16 @@ import org.springframework.cloud.client.serviceregistry.Registration;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/*
  * @auther: Li Liangquan
  * @date: 2021/1/7 22:49
  * 工具类
  */
 public class Util {
     /**
-     * 格式化 List<Registration>转List<SmilodonRegister>
-     * @param registrations List<Registration>
-     * @return List<SmilodonRegister>(pojo)
+     * 格式化 List-Registration 转 List-SmilodonRegister
+     * @param registrations List-Registration
+     * @return List-SmilodonRegister (pojo)
      */
     public static List<SmilodonRegister> ListRegistrationToListListSmilodonRegister(List<Registration> registrations){
         List<SmilodonRegister> smilodonRegisters = new ArrayList<>();
