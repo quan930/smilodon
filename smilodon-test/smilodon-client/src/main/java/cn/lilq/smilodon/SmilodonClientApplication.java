@@ -1,7 +1,5 @@
-package cn.lilq.smilodontest;
+package cn.lilq.smilodon;
 
-import cn.lilq.smilodon.EnableSmilodonClient;
-import cn.lilq.smilodon.Response;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.DiscoveryClient;

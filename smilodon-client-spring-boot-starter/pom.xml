@@ -5,7 +5,7 @@
     <parent>
         <artifactId>smilodon</artifactId>
         <groupId>cn.lilq</groupId>
-        <version>0.2.2</version>
+        <version>0.2.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>cn.lilq.smilodon</groupId>
             <artifactId>smilodon-com</artifactId>
-            <version>0.2</version>
+            <version>0.2.3</version>
         </dependency>
         <!-- fastjson -->
         <dependency>

@@ -20,7 +20,7 @@ smilodon，是一套服务注册发现工具包，实现的目的是更好了解
     <dependency>
         <groupId>cn.lilq.smilodon</groupId>
         <artifactId>smilodon-server-spring-boot-starter</artifactId>
-        <version>0.2.2</version>
+        <version>0.2.4</version>
     </dependency>
     ```
 ##### 构建smilodon服务器
@@ -53,7 +53,7 @@ smilodon，是一套服务注册发现工具包，实现的目的是更好了解
     <dependency>
         <groupId>cn.lilq.smilodon</groupId>
         <artifactId>smilodon-client-spring-boot-starter</artifactId>
-        <version>0.2.2</version>
+        <version>0.2.4</version>
     </dependency>
     ```
 ##### 构建smilodon客户端
@@ -95,8 +95,8 @@ smilodon，是一套服务注册发现工具包，实现的目的是更好了解
     }
     ```
 ### 演示
-
++ [test地址](https://github.com/quan930/smilodon/tree/main/smilodon-test)
 ### 不足
 + 动态注入controller
 + 心跳检测
-+ 订阅controller 动态注入  
++ 订阅controller 动态注入  (注入异常)
