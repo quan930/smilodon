@@ -1,8 +1,6 @@
 package cn.lilq.smilodon;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * Li Liangquan
@@ -12,6 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class Response {
     private Integer code;
     private String errorMsg;

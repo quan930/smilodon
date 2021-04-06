@@ -3,6 +3,7 @@ package cn.lilq.smilodon;
 import cn.lilq.smilodon.config.SmilodonClientConfig;
 import cn.lilq.smilodon.config.SmilodonDisposableBean;
 import cn.lilq.smilodon.config.SmilodonServiceConfig;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

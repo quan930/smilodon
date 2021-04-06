@@ -1,8 +1,6 @@
 package cn.lilq.smilodon;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * Li Liangquan
@@ -13,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class SubscribeService {
     private String subscribeServiceUrl;//订阅服务url
     private Boolean cache;//订阅服务是否缓存注册表

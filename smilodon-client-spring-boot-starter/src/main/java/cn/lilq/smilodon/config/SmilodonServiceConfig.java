@@ -20,13 +20,13 @@ public class SmilodonServiceConfig {
     @Resource
     private SmilodonRegister smilodonRegister;
     @Resource
-    private RestTemplate restTemplate;
+    private RestTemplate smilodonRestTemplate;
     @Resource
     private SmilodonClientProperties smilodonClientProperties;
 
     @Bean(name = "smilodonClientService")
     public SmilodonClientService smilodonClientService(){
-        SmilodonClientServiceImpl smilodonClientService =  new SmilodonClientServiceImpl(smilodonRegister,restTemplate,smilodonClientProperties);
+        SmilodonClientServiceImpl smilodonClientService =  new SmilodonClientServiceImpl(smilodonRegister,smilodonRestTemplate,smilodonClientProperties);
         smilodonClientService.init();//初始化 发送注册信息
         return smilodonClientService;
     }

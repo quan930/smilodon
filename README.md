@@ -1,12 +1,12 @@
 # smilodon
-![release:0.2.2](https://img.shields.io/badge/release-0.2.2-blue)
+![release:0.3.3](https://img.shields.io/badge/release-0.3.3-blue)
 ![Spring Boot Version:2.3.0.RELEASE](https://img.shields.io/badge/Spring%20Boot%20Version-2.3.0.RELEASE-brightgreen)
 ![Spring Cloud Version:Hoxton.SR8](https://img.shields.io/badge/Spring%20Cloud%20Version-Hoxton.SR8-brightgreen)
 ![last-commit](https://img.shields.io/github/last-commit/quan930/smilodon)
 
 
 ### 简介
-smilodon，是一套服务注册发现工具包，实现的目的是更好了解微服务的原理，实现`spring-cloud-commons`部分功能，尚不支持`@LoadBalanced`注解
+smilodon，是一套服务注册发现工具包，实现的目的是更好了解微服务的原理，实现`spring-cloud-commons`部分功能，支持`@LoadBalanced`注解，可以使用RestTemplate调用服务
 
 ### smilodon服务器
 
@@ -92,6 +92,28 @@ smilodon，是一套服务注册发现工具包，实现的目的是更好了解
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public void getInstances(@PathVariable String id){
         System.out.println(discoveryClient.getInstances(id));
+    }
+    ```
++ 使用具有`@LoadBalanced`注解的RestTemplate调用服务
+    ```java
+    @ResponseBody
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public Response hello() {
+        return new Response(200,"successful","hello world,port:"+serverPort);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/sayhello", method = RequestMethod.GET)
+    public Response sayHello() {
+        Response response = restTemplate.getForObject("http://ORDER-SERVER/hello", Response.class);
+        System.out.println(response);
+        return response;
+    }
+    
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
     ```
 ### 演示

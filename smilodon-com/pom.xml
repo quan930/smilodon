@@ -6,7 +6,7 @@
     <parent>
         <artifactId>smilodon</artifactId>
         <groupId>cn.lilq</groupId>
-        <version>0.2.4</version>
+        <version>0.3.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

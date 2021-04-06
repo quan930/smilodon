@@ -6,6 +6,9 @@ import cn.lilq.smilodon.properties.SmilodonInstanceProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.loadbalancer.blocking.client.BlockingLoadBalancerClient;
+import org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -55,9 +58,14 @@ public class SmilodonClientConfig {
         return null;
     }
 
-    //可能会跟 @LoadBalanced 冲突
-    @Bean(name = "restTemplate")
+    @Bean(name = "smilodonRestTemplate")
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
+    }
+
+    @Bean
+    public LoadBalancerClient loadBalancerClient(){
+        log.info("LoadBalancerClient注入");
+        return new BlockingLoadBalancerClient(new LoadBalancerClientFactory());
     }
 }

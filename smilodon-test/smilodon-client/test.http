@@ -1,8 +1,8 @@
 ###
-GET http://127.0.0.1:6002/
+GET http://127.0.0.1:5002/sayhello
 Accept: application/json
 
 
 ###
-GET http://127.0.0.1:6002/ORDER-SERVER
+GET http://127.0.0.1:5002/ORDER-SERVER
 Accept: application/json

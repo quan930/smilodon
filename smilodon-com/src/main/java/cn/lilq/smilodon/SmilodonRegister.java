@@ -1,8 +1,6 @@
 package cn.lilq.smilodon;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * Li Liangquan
@@ -13,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class SmilodonRegister {
     private String serviceId;//服务名称
     private String instanceId;//实例id

@@ -6,7 +6,7 @@
 
     <groupId>cn.lilq</groupId>
     <artifactId>smilodon</artifactId>
-    <version>0.2.4</version>
+    <version>0.3.3</version>
     <name>smilodon</name>
     <description>Spring Cloud smilodon</description>
     <url>https://github.com/quan930/smilodon</url>
