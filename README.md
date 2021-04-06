@@ -6,7 +6,7 @@
 
 
 ### 简介
-![](https://github.com/quan930/smilodon/tree/main/description/show.jpeg)
+![smilodon](https://github.com/quan930/smilodon/blob/main/description/show.jpeg)
 smilodon中文是剑齿虎，是一套服务注册发现工具包，实现的目的是更好了解微服务的原理，实现`spring-cloud-commons`部分功能，支持`@LoadBalanced`注解，可以使用RestTemplate调用服务
 
 ### smilodon服务器
