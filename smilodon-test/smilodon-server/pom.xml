@@ -22,7 +22,7 @@
         <dependency>
             <groupId>cn.lilq.smilodon</groupId>
             <artifactId>smilodon-server-spring-boot-starter</artifactId>
-            <version>0.3.1</version>
+            <version>0.3.3</version>
         </dependency>
         <!--test-->
         <dependency>
